@@ -1,7 +1,7 @@
 import turtle
 import ball
 import random
-
+import seven_segments_proc
 class Simulation:
     def __init__(self):
         self.num_balls = 5
@@ -17,6 +17,9 @@ class Simulation:
         self.vx = []
         self.vy = []
         self.ball_color = []
+
+
+
 
         for i in range(self.num_balls):
             self.xpos.append(random.uniform(-1*self.canvas_width + self.ball_radius, self.canvas_width - self.ball_radius))
@@ -39,16 +42,28 @@ class Simulation:
             turtle.left(90)
             turtle.forward(2*self.canvas_height)
             turtle.left(90)
+            
     def run(self):
         dt = 0.2 # time step
-        # while (True):
-        #     turtle.clear()
-        #     self.draw_border()
-        #     for i in range(self.num_balls):
-        #         ball.Ball.draw_ball(self.ball_color[i], self.ball_radius, self.xpos[i], self.ypos[i])
-        #         ball.Ball.move_ball(i, self.xpos, self.ypos, self.vx, self.vy, dt)
-        #         ball.Ball.update_ball_velocity(i, self.xpos, self.ypos, self.vx, self.vy, self.canvas_width, self.canvas_height, self.ball_radius)
-        #     turtle.update()
+
+        Tom = turtle.Turtle()
+        tom_color = (255, 0, 0)
+        seven_segments_proc.BgNum(Tom, tom_color)
+        delay_in_seconds = 0.2
+
+        while (True):
+            turtle.clear()
+            self.draw_border()
+            for i in range(self.num_balls):
+                ball.Ball.draw_ball(self.ball_color[i], self.ball_radius, self.xpos[i], self.ypos[i])
+                ball.Ball.move_ball(i, self.xpos, self.ypos, self.vx, self.vy, dt)
+                ball.Ball.update_ball_velocity(i, self.xpos, self.ypos, self.vx, self.vy, self.canvas_width, self.canvas_height, self.ball_radius)
+
+            for i in range(0, 10):
+                seven_segments_proc.BgNum.clear(Tom)
+                seven_segments_proc.BgNum.draw(Tom, i)
+                seven_segments_proc.BgNum.my_delay(delay_in_seconds)
+            turtle.update()
 
         # hold the window; close it by clicking the window close 'x' mark
         turtle.done()
