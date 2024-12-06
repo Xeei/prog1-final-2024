@@ -3,7 +3,7 @@ import turtle
 
 class Ball:
     def __init__(self):
-        self.test = 0
+        pass
 
     def draw_ball(color, size, x, y):
         # draw a circle of radius equals to size at x, y coordinates and paint it with color
